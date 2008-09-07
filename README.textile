@@ -1,0 +1,5 @@
+h1. jQuery.ev
+
+The purpose of this library is to provide an easy way to long-poll
+on a URL for events and dispatch as they come in.
+
