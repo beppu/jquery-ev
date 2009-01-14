@@ -22,7 +22,7 @@ contains functions that will run when events of that type come in.
 
 h1. Example
 
-http://github.com/beppu/mad-scientists-lab/tree/master/chat/
+"http://github.com/beppu/mad-scientists-lab/tree/master/chat/":http://github.com/beppu/mad-scientists-lab/tree/master/chat/
 
-http://bavl.org:4234/
+"http://bavl.org:4234/":http://bavl.org:4234/
 
