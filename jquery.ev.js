@@ -8,13 +8,9 @@
     verbose  : true,
 
     log: function() {
-      /*
-      if (opera) {
-        opera.postError(arguments);
-      } else if (self.verbose && console) {
+      if (this.verbose && typeof(window.console) != 'undefined') {
         console.log(arguments);
       }
-      */
     },
 
     run: function(events) {
