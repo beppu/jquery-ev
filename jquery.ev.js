@@ -36,6 +36,20 @@
       var self = this;
       this.running = true;
       if (!channels) channels = [];
+
+      var restart = function(xhr, status, error) {
+        var delay;
+        if (status == 'success') {
+          delay = 100;
+        } else {
+          self.log('status: ' + status, '; waiting before long-polling again...');
+          delay = 5000;
+        }
+        window.setTimeout(function(){
+          if (self.running) self.loop(url, channels);
+        }, delay);
+      };
+
       this.xhr = $.ajax({
         type     : 'GET',
         dataType : 'json',
@@ -45,18 +59,8 @@
           self.log('success', events);
           self.run(events)
         },
-        complete : function(xhr, status) {
-          var delay;
-          if (status == 'success') {
-            delay = 100;
-          } else {
-            self.log('status: ' + status, '; waiting before long-polling again...');
-            delay = 5000;
-          }
-          window.setTimeout(function(){ 
-            if (self.running) self.loop(url, channels);
-          }, delay);
-        }
+        complete : restart,
+        error    : restart
       });
     }
 
