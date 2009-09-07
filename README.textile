@@ -7,22 +7,52 @@ h1. API
 
 h2. Starting and Stopping the Event Loop
 
-h3. $.ev.loop(url, channels)
+h3. $.ev.loop(url, handlers)
+
+*url* - the URL you want to long-poll on.
+
+*handlers* - an object that maps event types to event handlers.
+
+Example:
+
+  $.ev.loop('/comet/channel/foo/2894293942', {
+
+    // ev.type == "backgroundColor"
+    backgroundColor: function(ev) {
+      $('body').css({ backgroundColor: ev.color });
+    },
+
+    // ev.type == "foregroundColor"
+    foregroundColor: function(ev) {
+      $('body').css({ color: ev.color });
+    },
+
+    // ev.type == "debugMessage"
+    debugMessage: function(ev) {
+      console.log(ev.message);
+    }
+
+  });
 
 h3. $.ev.stop()
 
-h2. Adding Event Handlers
+This will stop the long-polling loop.
 
-I took a very low-tech approach to event handlers.  Basically,
-$.ev.handlers is treated as a hash that's keyed by event.type and
-contains functions that will run when events of that type come in.
+Example:
 
-  $.ev.handlers['hello'] = function(ev){ console.log(ev.toSource()) };
+  $.ev.stop();
 
+h2. Event Handlers
 
-h1. Example
+This library makes the assumption that every event from the COMET server
+will be an object with a *type* attribute.  Based on the value of the
+*type* attribute, jQuery.ev will dispatch events to the event handlers.
+
+h1. Code Examples
 
 "http://github.com/beppu/mad-scientists-lab/tree/master/chat/":http://github.com/beppu/mad-scientists-lab/tree/master/chat/
+
+"http://github.com/beppu/stardust/tree/master":http://github.com/beppu/stardust/tree/master
 
 "http://bavl.org:4234/":http://bavl.org:4234/
 
