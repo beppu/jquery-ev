@@ -15,6 +15,7 @@ h3. $.ev.loop(url, handlers)
 
 Example:
 
+<pre>
     $.ev.loop('/comet/channel/foo/2894293942', {
 
       // ev.type == "backgroundColor"
@@ -33,6 +34,7 @@ Example:
       }
 
     });
+</pre>
 
 h3. $.ev.stop()
 
