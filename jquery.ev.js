@@ -72,6 +72,7 @@
       this.xhr = $.ajax({
         type     : 'GET',
         dataType : 'json',
+        cache    : false,
         url      : url,
         timeout  : self.timeout,
         success  : function(messages, status) {
